@@ -1,4 +1,4 @@
-# Find the Treasure
+#Find the Treasure
 
 Welcome to Find the Treasure, a classic text-based adventure game where players embark on an exciting quest to discover hidden riches on Treasure Island!
 
