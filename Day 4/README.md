@@ -40,4 +40,3 @@ It's a draw!
 ```
 ---
 
-Feel free to use this simplified version for your GitHub repository.
