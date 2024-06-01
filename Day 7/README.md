@@ -1,4 +1,4 @@
-```markdown
+
 # Hangman Game
 
 Welcome to the Hangman Game project! This is a classic word guessing game implemented in Python. The project is structured into three main files: `hangman.py`, `hangman_words.py`, and `hangman_art.py`.
