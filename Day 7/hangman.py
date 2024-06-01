@@ -1,11 +1,14 @@
 import random
+import hangman_art
+import hangman_word
 
-words = ['jolly', 'mouse', 'lorry']
+print(hangman_art.logo)
 
 def start_game():
-    choosen_word = random.choice(words)
+    choosen_word = random.choice(hangman_word.word_list)
     display = ['_' for i in choosen_word]
-    num_of_life = len(choosen_word)
+    num_of_life = 6
+    print(f'Total letters are: {len(choosen_word)}')
 
 
     while '_' in display and num_of_life > 0 :
@@ -20,10 +23,12 @@ def start_game():
 
         print(''.join(display))
         print(f'Remaining live: {num_of_life}')
+        print(f'{hangman_art.stages[num_of_life]}')
     
     if '_' not in display:
         print("Congratulations. You won the game!")
     else:
+        print(f'The answer is: {choosen_word}')
         print("You lose. Play again.")
 
 start_game()
