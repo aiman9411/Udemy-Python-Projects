@@ -29,9 +29,6 @@ def game():
         return one_card, sum_com_card
     
     
-
-
-    
     play = input("Do you want to play a game of Blackjack? Type 'y' or 'n'\n").lower()
 
     if play == 'y':
@@ -41,6 +38,9 @@ def game():
         print(f"Your cards: {two_cards}, current score: {sum_value}")
         print(f"Computer's first card: {comp_card}, current score: {sum_com_card}")
 
+        if sum_value == 21:
+            print("Win with a blackjack 😎")
+
         more_card = True
         
         while more_card:
@@ -48,26 +48,34 @@ def game():
             if play_again == 'y':
                 added_cards, total = draw_more_card(two_cards)
                 print(f"Your cards {added_cards}, current score: {total}")
+                two_cards = added_cards
+                sum_value = total
+
+                if sum_value > 21:
+                    more_card = False
+                    print("You went over. You lose 😤")
+                elif sum_value == 21:
+                    more_card = False
+                    print("Win with a blackjack 😎")
             else:
                 more_card = False
-                added_cards, total = draw_more_card(two_cards)
-                print(f"Your final hand: {added_cards}, final_score: {total}")
+                print(f"Your final hand: {two_cards}, final_score: {sum_value}")
                 while sum_com_card < 17:
                     new_comp_cards, sum_com_card = draw_more_card(comp_card)
                 print(f"Computer's final hand: {new_comp_cards}, final score: {sum_com_card}")
 
-
-
+                if sum_com_card > 21:
+                    print("Opponent went over. You win 😁")
+                elif sum_com_card == 21:
+                    print("Lose, opponent has Blackjack 😱")
+                elif sum_value > sum_com_card:
+                    print("You win 😃")
+                elif sum_value < sum_com_card:
+                    print("You lose 😤")
+                elif sum_value == sum_com_card:
+                    print("Draw 🙃")
 
     else:
         print("Come again.")
 
 game()
-
-
-
-
-
-
-
-
