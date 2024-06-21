@@ -6,25 +6,23 @@ screen.setup(600,600)
 screen.bgcolor("black")
 screen.title("My Snake Game")
 
-turtle_list = []
+snake_list = []
+x_axis = [-20, 0, 20]
+for i in range(3):
+    snake = Turtle()
+    snake.penup()
+    snake.goto(x_axis[i], 0)
+    snake.shape("square")
+    snake.color("white")
+    snake_list.append(snake)
+
 moving = True
-
-def create_turtle():
-    x_axis = [-20, 0, 20]
-    for i in range(3):
-        turtle = Turtle()
-        turtle.penup()
-        turtle.goto(x_axis[i], 0)
-        turtle.shape("square")
-        turtle.color("white")
-        turtle_list.append(turtle)
-
-def move_turtle():
-    while moving:
-        for turtle in turtle_list:
-            turtle.forward(5)
-
-create_turtle()
-move_turtle()
+while moving:
+    for snake in snake_list:                        
+        snake.forward(5)
+        
+    head_snake = snake_list[2]
+    if head_snake.xcor() == 280:
+        moving = False
 
 screen.exitonclick()
