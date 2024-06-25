@@ -1,7 +1,7 @@
 from turtle import Turtle
 import time
 
-X_AXIS = [20, 0, -20]
+X_AXIS = [(20,0), (0,0), (-20,0)]
 STEP = 20
 
 class Snake:
@@ -12,12 +12,19 @@ class Snake:
 
     def create_snake(self):
         for position in X_AXIS:
-            segment = Turtle()
-            segment.shape("square")
-            segment.color("white")
-            segment.penup()
-            segment.goto(position, 0)
-            self.segments.append(segment)
+            self.add_segment(position)
+
+    def add_segment(self, position):
+        segment = Turtle()
+        segment.shape("square")
+        segment.color("white")
+        segment.penup()
+        segment.goto(position)
+        self.segments.append(segment)
+    
+    def extend(self):
+        self.add_segment(self.segments[-1].position())
+
 
     def move_snake(self):
         for seg_num in range(len(self.segments) - 1, 0, -1):
@@ -41,4 +48,3 @@ class Snake:
     def snake_down(self):
         if self.head.heading() != 90:
             self.head.setheading(270)
-
