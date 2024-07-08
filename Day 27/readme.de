@@ -1,1 +1,47 @@
+```markdown
+# Mile to KM Converter
 
+This Python application allows users to convert distances in miles to kilometers. Built with Tkinter, it provides a simple and user-friendly graphical user interface (GUI) to perform the conversion.
+
+## Features
+
+- **User Input**: Allows users to enter the distance in miles.
+- **Conversion**: Converts the entered distance from miles to kilometers.
+- **Error Handling**: Validates user input and provides feedback for non-numeric input.
+
+## Prerequisites
+
+Before running this application, you must have Python installed on your machine. Python 3.6 or higher is recommended. You can download Python [here](https://www.python.org/downloads/).
+
+## Installation
+
+Clone the repository to your local machine:
+
+```bash
+git clone https://github.com/yourusername/mile-to-km-converter.git
+cd mile-to-km-converter
+```
+
+## Usage
+
+To run the application, execute the following command in the terminal:
+
+```bash
+python mile_to_km_converter.py
+```
+
+Once the application is running, you can:
+
+1. Enter a numerical value representing miles in the input field.
+2. Click on the "Calculate" button to convert the entered distance into kilometers.
+3. View the result displayed in the output field below the button.
+
+## How It Works
+
+The application uses the formula:
+
+```
+1 Mile = 1.61 Kilometers
+```
+
+When you enter the distance in miles and press the "Calculate" button, the application multiplies the entered value by 1.61 to convert it to kilometers and displays the result.
