@@ -10,21 +10,50 @@ FONT_NAME = "Courier"
 WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
+reps = 0
+timer = None
 
 # ---------------------------- TIMER RESET ------------------------------- # 
+def reset_clock():
+    global reps, timer
+    window.after_cancel(timer)
+    reps = 0
+    timer_label.config(text="Timer", fg=GREEN)
+    canvas.itemconfig(canvas_text, text="00:00")
+    tick_label.config(text="")
 
 # ---------------------------- TIMER MECHANISM ------------------------------- # 
 
 def start_timer():
-    count_down(5 * 60)
+        global reps
+        reps += 1
 
+        if reps % 8 == 0:
+            count_down(LONG_BREAK_MIN * 60)
+            timer_label.config(text="LONG BREAK", fg=RED)
+        elif reps % 2 == 0:
+            count_down(SHORT_BREAK_MIN * 60)
+            timer_label.config(text="SHORT BREAK", fg=PINK)
+        else:
+            count_down(WORK_MIN * 60)
+            timer_label.config(text="WORK", fg=GREEN)
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
 def count_down(count):
+    global timer
     min = math.floor(count / 60)
     second = count % 60
-    canvas.itemconfig(canvas_text, text= f"{min}:{second}")
-    if count > 1:
-        window.after(1000, count_down, count-1)
+    if second < 10:
+        second = f"0{second}"
+    canvas.itemconfig(canvas_text, text=f"{min}:{second}")
+    if count > 0:
+        timer = window.after(1000, count_down, count-1)
+    else:
+        start_timer()
+        mark = ""
+        work_sessions = math.floor(reps / 2)
+        for _ in range(work_sessions):
+            mark += "✅"
+        tick_label.config(text=mark)
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -49,11 +78,11 @@ start_button = Button(text="Start", command=start_timer)
 start_button.grid(row=2, column=0)
 
 # Reset Button
-reset_button = Button(text="Reset")
+reset_button = Button(text="Reset", command=reset_clock)
 reset_button.grid(row=2, column=2)
 
 # Tick Label
-tick_label = Label(text="✅", bg=YELLOW)
+tick_label = Label(bg=YELLOW)
 tick_label.grid(row=3, column=1)
 
 window.mainloop()
